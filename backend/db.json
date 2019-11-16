@@ -1,0 +1,85 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Arthur Oliveira",
+      "email": "aoliveira@cod3r.com.br"
+    },
+    {
+      "id": 2,
+      "name": "Maria Julia da Silva",
+      "email": "mjds@empresa.com"
+    },
+    {
+      "name": "asd",
+      "email": "tes@tes.com",
+      "senha": "12354645",
+      "idade": "20",
+      "cpf": "4565456",
+      "telefone": "12354354",
+      "id": 3
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "description": "Lápis",
+      "amount": 8,
+      "price": "1.50",
+      "brand": "Faber Castel"
+    },
+    {
+      "description": "Caneta",
+      "amount": "6",
+      "id": 2,
+      "price": "2",
+      "brand": "BIC"
+    },
+    {
+      "description": "Caderno",
+      "amount": 0,
+      "price": "5.00",
+      "brand": "Tilibra",
+      "id": 3
+    }
+  ],
+  "compras": [
+    {
+      "id": 1,
+      "id_user": 1,
+      "id_product": 1,
+      "amount": 1,
+      "price": 1.5
+    },
+    {
+      "id_user": 1,
+      "id_product": 1,
+      "amount": 1,
+      "price": 1.5,
+      "id": 2
+    }
+  ],
+  "eventos": [
+    {
+      "id": 1,
+      "name": "Sexta",
+      "data": "2019-11-16",
+      "ingresso": 60,
+      "price": "250"
+    },
+    {
+      "id": 2,
+      "name": "Rave",
+      "data": "2019-11-19",
+      "ingresso": 60,
+      "price": "300"
+    },
+    {
+      "id": 3,
+      "name": "Rave",
+      "data": "2019-11-28",
+      "ingresso": 60,
+      "price": "123"
+    }
+  ]
+}
