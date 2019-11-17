@@ -10,8 +10,9 @@ const headerProps = {
 
 const baseUrl = 'http://localhost:3001/eventos'
 const initialState = {
-    evento: { name: '', ingresso: '', ingressoMeia:'', data:'',time:'', idade:'',price:'' },
-    list: []
+    evento: { name: '', ingresso: '', ingressoMeia:'', data:'',time:'', idade:"+18",price:'' },
+    list: [],
+    inptError: '',
 }
 
 export default class eventos extends Component {
@@ -26,6 +27,9 @@ export default class eventos extends Component {
 
     clear() {
         this.setState({ evento: initialState.evento })
+        this.setState({                
+            inptError: ''
+        });
     }
 
     save() {
@@ -49,27 +53,49 @@ export default class eventos extends Component {
         const evento = { ...this.state.evento }
         evento[event.target.name] = event.target.value
         this.setState({ evento })
+        this.setState({                
+            inptError: ''
+        });
+        
     }
+    CheckInput(e) {
+        
+        if (this.state.evento.name == '' 
+            || this.state.evento.ingresso=='' 
+            ||  this.state.evento.ingressoMeia==''
+            ||  this.state.evento.data==''
+            ||  this.state.evento.time==''
+            ||  this.state.evento.price=='') 
+            {
+                this.setState({ inptError: ' é obrigatório...' })                        
+        } else {
 
+            this.setState({                
+                inptError: '',                
+            });
+            this.save(e)
+        }
+    }
     renderForm() {
         return (
             <div className="form">
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>Nome do Evento</label>
-                            <input type="text" className="form-control"
+                            <label className={this.state.inptError ? 'text-danger' : ''}>Nome do Evento{this.state.inptError}</label>
+                            <input type="text" className={"form-control " + (this.state.inptError ? "is-invalid text-danger" : "")}
                                 name="name"
                                 value={this.state.evento.name}
                                 onChange={e => this.updateField(e)}
                                 placeholder="Digite o nome..." />
+                            
                         </div>
                     </div>
 
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>Quantidade Ingresso</label>
-                            <input type="number" className="form-control"
+                            <label className={this.state.inptError ? 'text-danger' : ''}> Quantidade Ingresso {this.state.inptError}</label>                            
+                            <input type="number" className={"form-control " + (this.state.inptError ? "is-invalid text-danger" : "")}
                                 name="ingresso"
                                 value={this.state.evento.ingresso}
                                 onChange={e => this.updateField(e)}
@@ -80,8 +106,8 @@ export default class eventos extends Component {
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>Data do evento</label>
-                            <input type="date" className="form-control"
+                            <label className={this.state.inptError ? 'text-danger' : ''}>Data do evento {this.state.inptError}</label>
+                            <input type="date" className={"form-control " + (this.state.inptError ? "is-invalid text-danger" : "")}
                                 name="data"
                                 value={this.state.evento.data}
                                 onChange={e => this.updateField(e)}
@@ -91,8 +117,8 @@ export default class eventos extends Component {
 
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>Quantidade Ingresso Meia</label>
-                            <input type="number" className="form-control"
+                            <label className={this.state.inptError ? 'text-danger' : ''}>Quantidade Ingresso Meia  {this.state.inptError}</label>
+                            <input type="number" className={"form-control " + (this.state.inptError ? "is-invalid text-danger" : "")}
                                 name="ingressoMeia"
                                 value={this.state.evento.ingressoMeia}
                                 onChange={e => this.updateField(e)}
@@ -103,8 +129,8 @@ export default class eventos extends Component {
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>Hora do evento</label>
-                            <input type="time" className="form-control"
+                            <label  className={this.state.inptError ? 'text-danger' : ''}>Hora do evento {this.state.inptError}</label>
+                            <input type="time" className={"form-control " + (this.state.inptError ? "is-invalid text-danger" : "")}
                                 name="time"
                                 value={this.state.evento.time}
                                 onChange={e => this.updateField(e)}
@@ -113,25 +139,28 @@ export default class eventos extends Component {
                     </div>                
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>Faixa etária</label>
+                            <label>Faixa etária da festa</label>
+                                                
                             <select
                                 className="form-control"
                                 name="idade"
-                                value={this.state.evento.idade} 
-                                onChange={e => this.updateField(e)}                                
-                            >                                 
-                                <option>+18</option>
-                                <option>+16</option>
-                                <option>Livre</option>
-                            </select>
+                                onChange={e => this.updateField(e)} 
+                                value={this.state.evento.idade}                        
+                                >
+                                
+                                <option value="+18">+18</option>
+                                <option value="+16">+16</option>
+                                <option value="Livre">Livre</option>
+                            </select>                        
+      
                         </div>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>Preço do ingresso</label>
-                            <input type="number" className="form-control"
+                            <label  className={this.state.inptError ? 'text-danger' : ''}>Preço do ingresso  {this.state.inptError}</label>
+                            <input type="number" className={"form-control " + (this.state.inptError ? "is-invalid text-danger" : "")}
                                 name="price"
                                 value={this.state.evento.price}
                                 onChange={e => this.updateField(e)}
@@ -144,7 +173,7 @@ export default class eventos extends Component {
                 <div className="row">
                     <div className="col-12 d-flex justify-content-end">
                         <button className="btn btn-primary"
-                            onClick={e => this.save(e)}>
+                            onClick={e => this.CheckInput(e)}>
                             Salvar
                         </button>
 

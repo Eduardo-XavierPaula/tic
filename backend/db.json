@@ -24,7 +24,7 @@
     {
       "id": 1,
       "description": "Lápis",
-      "amount": 8,
+      "amount": 7,
       "price": "1.50",
       "brand": "Faber Castel"
     },
@@ -57,6 +57,13 @@
       "amount": 1,
       "price": 1.5,
       "id": 2
+    },
+    {
+      "id_user": 1,
+      "id_product": 1,
+      "amount": 1,
+      "price": 1.5,
+      "id": 3
     }
   ],
   "eventos": [
@@ -64,22 +71,59 @@
       "id": 1,
       "name": "Sexta",
       "data": "2019-11-16",
-      "ingresso": 60,
-      "price": "250"
-    },
-    {
-      "id": 2,
-      "name": "Rave",
-      "data": "2019-11-19",
-      "ingresso": 60,
-      "price": "300"
+      "ingresso": "12",
+      "price": "250",
+      "idade": "+18",
+      "time": "12:30",
+      "ingressoMeia": "16"
     },
     {
       "id": 3,
       "name": "Rave",
       "data": "2019-11-28",
       "ingresso": 60,
-      "price": "123"
+      "price": "123",
+      "idade": "+16"
+    },
+    {
+      "name": "a",
+      "ingresso": "23",
+      "ingressoMeia": "535",
+      "data": "2019-11-23",
+      "time": "01:30",
+      "idade": "+18",
+      "price": "30",
+      "id": 4
+    },
+    {
+      "name": "Teste",
+      "ingresso": "30",
+      "ingressoMeia": "15",
+      "data": "2019-11-14",
+      "time": "",
+      "idade": "+16",
+      "price": "30",
+      "id": 5
+    },
+    {
+      "name": "teste",
+      "ingresso": "23",
+      "ingressoMeia": "12",
+      "data": "2019-11-18",
+      "time": "20:30",
+      "idade": "+18",
+      "price": "23.6",
+      "id": 6
+    },
+    {
+      "name": "a",
+      "ingresso": "1",
+      "ingressoMeia": "2",
+      "data": "2019-11-29",
+      "time": "12:03",
+      "idade": "+18",
+      "price": "12",
+      "id": 7
     }
   ]
 }

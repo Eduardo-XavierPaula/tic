@@ -46,9 +46,11 @@ export default class Products extends Component {
     }
 
     updateField(event) {
+        
         const product = { ...this.state.product }
         product[event.target.name] = event.target.value
         this.setState({ product })
+        console.log(product)
     }
 
     renderForm() {

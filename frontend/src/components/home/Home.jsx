@@ -11,7 +11,9 @@ const headerProps = {
 const baseUrl = 'http://localhost:3001/eventos'
 const initialState = {
     evento: { name: '', data: '', ingresso: '', price: '' },
-    list: []
+    list: [],
+    pesquisa: '',
+    
 }
 
 export default class Home extends Component {
@@ -34,16 +36,48 @@ export default class Home extends Component {
 
 
     updateField(event) {
-        const evento = { ...this.state.evento }
-        evento[event.target.name] = event.target.value
-        this.setState({ evento })
+        const pesquisa = event.target.value
+        
+        this.setState({pesquisa})
+        this.refresh(pesquisa)
+        console.log(pesquisa)
     }
     load(evento) {
         this.props.history.push("comprar/"+evento.id);
     }
+    refresh(name = '') {
+        axios.get(`${baseUrl}?q=${name}`)
+            .then(resp => this.setState({
+                ...this.state, name, list:
+                    resp.data                    
+            }))            
+    }
 
-
-
+    handleSearch(event) {
+        const pesquisa = {...this.state.pesquisa} 
+        pesquisa[event.target.name] = event.target.value
+        this.setState({ pesquisa })
+        console.log(pesquisa)
+        this.refresh(this.state.pesquisa)
+    }
+    renderForm() {
+        return (
+            <div className="form">
+                <div className="row">
+                    <div className="col-12 col-md-6">                          
+                    <input
+                        name="pesquisa"
+                        placeholder="Pesquise o evento aqui..."
+                        className="form-control"
+                        value={this.state.pesquisa}                        
+                        onChange={e =>this.updateField(e)}
+                        />                                    
+                    </div>
+                    
+                </div>
+            </div> 
+        )
+    }
     renderTable() {
         return (
             <table className="table mt-4">
@@ -62,25 +96,7 @@ export default class Home extends Component {
             </table>
         )
     }
-    renderForm() {
-        return (
-            <div className="form">
-                <div className="row">
-                    <div className="col-12 col-md-6">                          
-                        <input type="text" className="form-control"
-                                    name="name"
-                                    value={this.state.evento.name}
-                                    onChange={e => this.updateField(e)}
-                                    placeholder="Digite o e-mail..." />                                       
-                    </div>
-                    <button className="btn btn-primary"
-                                    onClick={e => this.updateField(e)}>
-                                    <i className="fa fa-search icon"></i>
-                        </button>
-                </div>
-            </div> 
-        )
-    }
+    
     renderRows() {
         return this.state.list.map(evento => {
             return (
